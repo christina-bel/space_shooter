@@ -14,7 +14,7 @@ class Bullet extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    animation = await gameRef.loadSpriteAnimation(
+    animation = await game.loadSpriteAnimation(
       'bullet.png',
       SpriteAnimationData.sequenced(
         amount: 4,

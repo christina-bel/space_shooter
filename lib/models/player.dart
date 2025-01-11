@@ -16,7 +16,7 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    animation = await gameRef.loadSpriteAnimation(
+    animation = await game.loadSpriteAnimation(
       'player.png',
       SpriteAnimationData.sequenced(
         amount: 4,
@@ -25,7 +25,7 @@ class Player extends SpriteAnimationComponent
       ),
     );
 
-    position = gameRef.size / 2;
+    position = game.size / 2;
 
     _bulletSpawner = SpawnComponent(
       period: .2,
@@ -36,7 +36,7 @@ class Player extends SpriteAnimationComponent
       autoStart: false,
     );
 
-    gameRef.add(_bulletSpawner);
+    game.add(_bulletSpawner);
   }
 
   void move(Vector2 delta) => position.add(delta);

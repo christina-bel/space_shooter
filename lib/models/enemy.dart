@@ -2,6 +2,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:space_shooter/game/space_shooter_game.dart';
 import 'package:space_shooter/models/bullet.dart';
+import 'package:space_shooter/models/explosion.dart';
 
 class Enemy extends SpriteAnimationComponent
     with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
@@ -50,6 +51,7 @@ class Enemy extends SpriteAnimationComponent
     if (other is Bullet) {
       removeFromParent();
       other.removeFromParent();
+      game.add(Explosion(position: position));
     }
   }
 }
