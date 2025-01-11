@@ -43,3 +43,28 @@ sh scripts/spider_build.sh
  ```
 
 Spider configuration file is located [here](spider.yaml).
+
+## Icons launcher
+
+Use [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons) to generate adaptive icons.
+
+## Image folder
+
+Add necessary image in the images folder in the assets folder.
+
+### Configuring image generation
+
+Configuration files:
+``` text
+flutter_launcher_icons.yaml
+```
+
+After generating, make sure that the icons have been generated correctly.
+
+### Generation
+
+To start the generation, run the command:
+```shell
+# Starts generating icons from all customization files
+fvm flutter pub run flutter_launcher_icons
+```
