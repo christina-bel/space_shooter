@@ -1,8 +1,10 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:space_shooter/game/space_shooter_game.dart';
+import 'package:space_shooter/models/bullet.dart';
 
 class Enemy extends SpriteAnimationComponent
-    with HasGameReference<SpaceShooterGame> {
+    with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
   static const enemySize = 50.0;
 
   Enemy({super.position})
@@ -23,6 +25,8 @@ class Enemy extends SpriteAnimationComponent
         textureSize: Vector2.all(16),
       ),
     );
+
+    add(RectangleHitbox());
   }
 
   @override
@@ -33,6 +37,19 @@ class Enemy extends SpriteAnimationComponent
 
     if (position.y > game.size.y) {
       removeFromParent();
+    }
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+
+    if (other is Bullet) {
+      removeFromParent();
+      other.removeFromParent();
     }
   }
 }
